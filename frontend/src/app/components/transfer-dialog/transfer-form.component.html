@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Transferir de: {{ beneficioOrigem?.name || 'Indefinido' }}</h2>
+  
+  <p class="balance">
+    Saldo atual: 
+    <strong>R$ {{ (beneficioOrigem?.value || 0) | number:'1.2-2' }}</strong>
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="confirmarTransferencia()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>ID do Benefício Destino</mat-label>
+      <input matInput type="number" formControlName="destinoId" required />
+      <mat-error *ngIf="form.get('destinoId')?.hasError('required')">
+        ID do destino é obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.get('destinoId')?.hasError('min')">
+        ID deve ser maior que 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Valor a transferir</mat-label>
+      <input matInput type="number" step="0.01" min="0.01" formControlName="valor" required />
+      
+      <mat-error *ngIf="form.get('valor')?.hasError('required')">
+        O valor é obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.get('valor')?.hasError('min')">
+        O valor deve ser maior que zero
+      </mat-error>
+      <mat-error *ngIf="form.get('valor')?.hasError('saldoInsuficiente')">
+        Saldo insuficiente. Disponível: R$ {{ (beneficioOrigem?.value || 0) | number:'1.2-2' }}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || submitting">
+        <mat-spinner diameter="20" *ngIf="submitting"></mat-spinner>
+        <span *ngIf="!submitting">Confirmar Transferência</span>
+      </button>
+
+      <button mat-stroked-button type="button" (click)="cancelar()" [disabled]="submitting">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

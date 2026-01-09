@@ -1,0 +1,302 @@
+$primary: #6366f1;         
+$primary-dark: #4f46e5;
+$primary-light: #eef2ff;
+$accent: #8b5cf6;           
+$text-primary: #1e293b;     
+$text-secondary: #64748b;   
+$text-muted: #94a3b8;
+$background: #f8fafc;
+$card-bg: #ffffff;
+$border-base: #e2e8f0;     
+$shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+$radius: 16px;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.container {
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 48px;
+  background: $card-bg;
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-base;
+  transition: $transition;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    margin: 32px auto;
+    padding: 32px 24px;
+  }
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+  text-align: center;
+  letter-spacing: -0.5px;
+  margin: 0 0 48px 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 90px;
+    height: 5px;
+    background: linear-gradient(90deg, $primary, $accent);
+    border-radius: 3px;
+    display: block;
+    margin: 18px auto 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+}
+
+.benefit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.card {
+  background: $card-bg;
+  border-radius: $radius;
+  padding: 32px;
+  box-shadow: $shadow-sm;
+  border: 1.5px solid $border-base;
+  transition: $transition;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, $primary, $accent);
+    border-radius: $radius 0 0 $radius;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-lg;
+    border-color: transparent;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  mat-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-primary;
+    text-align: center;
+    margin: 0 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $border-base;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0;
+
+    p {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: $text-secondary;
+      font-size: 15.5px;
+      line-height: 1.6;
+
+      strong {
+        color: $text-primary;
+        font-weight: 600;
+        font-size: 16px;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      &:nth-child(3) strong { 
+        font-size: 20px;
+        color: $primary;
+        font-weight: 700;
+      }
+    }
+  }
+
+  p:last-of-type strong {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:contains("Ativo") {
+      background: rgba($primary, 0.1);
+      color: $primary;
+    }
+
+    &:contains("Inativo") {
+      background: rgba(#ef4444, 0.1);
+      color: #ef4444;
+    }
+  }
+
+  mat-card-actions {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid $border-base;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 28px;
+
+  ::ng-deep {
+    .mat-mdc-form-field-flex {
+      background: $primary-light;
+      border-radius: 12px;
+      padding: 0 18px;
+      height: 60px;
+      transition: $transition;
+      border: 2px solid transparent;
+    }
+
+    .mat-mdc-input-element {
+      font-size: 16.5px;
+      color: $text-primary;
+      caret-color: $primary;
+    }
+
+    .mat-mdc-floating-label {
+      color: $text-secondary;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    &.mat-focused {
+      .mat-mdc-form-field-flex {
+        border-color: $primary;
+        box-shadow: 0 0 0 4px rgba($primary, 0.15);
+        background: #ffffff;
+      }
+
+      .mat-mdc-floating-label {
+        color: $primary;
+      }
+    }
+
+    &:hover:not(.mat-focused) .mat-mdc-form-field-flex {
+      background: #e0e7ff;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+
+  button {
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none;
+    min-width: 140px;
+    transition: $transition;
+  }
+
+  button[color="primary"] {
+    background: linear-gradient(135deg, $primary, $primary-dark);
+    box-shadow: 0 4px 16px rgba($primary, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba($primary, 0.35);
+    }
+  }
+
+  button[mat-stroked-button],
+  button[mat-button] {
+    color: $text-primary;
+    border-color: $border-base;
+
+    &:hover {
+      background: $primary-light;
+      border-color: $primary;
+      color: $primary-dark;
+    }
+  }
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 20px;
+
+  p {
+    color: $text-muted;
+    font-size: 17px;
+  }
+}
+
+p.empty-message {
+  text-align: center;
+  color: $text-secondary;
+  font-size: 18px;
+  margin: 80px 0;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

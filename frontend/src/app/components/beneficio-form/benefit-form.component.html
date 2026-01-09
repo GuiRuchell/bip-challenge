@@ -1,0 +1,29 @@
+<mat-card>
+  <h2 class="form-title">{{ isEditMode ? 'Editar Benefício' : 'Novo Benefício' }}</h2>
+  
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <mat-form-field class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" formControlName="value" />
+    </mat-form-field>
+
+    <mat-checkbox formControlName="active">Ativo</mat-checkbox>
+
+    <div class="actions">
+      <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="submitting">
+        {{ isEditMode ? 'Atualizar' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
+</mat-card>

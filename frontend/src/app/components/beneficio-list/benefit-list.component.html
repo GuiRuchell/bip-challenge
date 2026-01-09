@@ -1,0 +1,25 @@
+<div class="container">
+  <button mat-raised-button color="primary" (click)="newBenefit()">+ Novo Benefício</button>
+
+  <div *ngIf="loading" class="spinner">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <div class="benefit-cards" *ngIf="!loading && benefits.length > 0">
+    <mat-card *ngFor="let b of benefits">
+      <mat-card-title>{{ b.name }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ b.description }}</p>
+        <p><strong>Valor:</strong> R$ {{ b.value | number:'1.2-2' }}</p>
+        <p><strong>Status:</strong> {{ b.active ? 'Ativo' : 'Inativo' }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="accent" (click)="editBenefit(b)">Editar</button>
+        <button mat-button color="warn" (click)="deleteBenefit(b)">Desativar</button>
+        <button mat-button color="primary" (click)="transferBenefit(b)">Transferir</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <p *ngIf="!loading && benefits.length === 0">Nenhum benefício cadastrado.</p>
+</div>

@@ -1,0 +1,84 @@
+mat-card {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 28px 32px;
+
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #1f1f1f;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.actions button {
+  min-width: 110px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+
+  mat-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+
+  .form-title {
+    color: #ffffff;
+  }
+
+  mat-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: #2a2a2a;
+      border-radius: 4px;
+    }
+
+    .mat-mdc-floating-label,
+    .mdc-floating-label {
+      color: #b0b0b0 !important;
+    }
+
+    &.mat-focused {
+      .mat-mdc-floating-label,
+      .mdc-floating-label {
+        color: #90caf9 !important;
+      }
+    }
+
+    .mat-mdc-input-element {
+      color: #ffffff !important;
+      caret-color: #ffffff;
+    }
+
+    .mat-mdc-input-element::placeholder {
+      color: #888888 !important;
+    }
+  }
+
+  mat-checkbox {
+    .mdc-label, .mat-mdc-checkbox-label {
+      color: #e0e0e0 !important;
+    }
+  }
+}
